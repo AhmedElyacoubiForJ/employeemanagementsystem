@@ -1,5 +1,8 @@
 package edu.yacoubi.employeemanagementsystem.dto;
 
+import lombok.Getter;
+
+@Getter
 public class GenderCounter {
     private Long count;
     private String gender;
