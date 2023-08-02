@@ -25,9 +25,9 @@ class EmployeeRepositoryTest {
     }
 
     @Test
-    void countEmployeeOrderByGender() {
+    void countEmployeeGroupByGender() {
         employeeRepository
-                .counterOrderByGender()
+                .counterGroupByGender()
                 .forEach(genderCounter -> {System.out.println(genderCounter);});
     }
 }

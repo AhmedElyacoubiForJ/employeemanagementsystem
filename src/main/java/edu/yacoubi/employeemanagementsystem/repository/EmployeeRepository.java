@@ -15,11 +15,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
                    "GROUP BY e.gender")
     Long countByGender(@Param(value = "gender") String gender);
 
-    // 1.1 order by gender
+    // 1.1 group by by gender
     // SELECT count(*) , gender FROM employee group by gender
     @Query(value =
             "SELECT new edu.yacoubi.employeemanagementsystem.dto.GenderCounter(count(*), e.gender) " +
                     "FROM Employee AS e " +
                     "GROUP BY e.gender")
-    List<GenderCounter> counterOrderByGender();
+    List<GenderCounter> counterGroupByGender();
 }
