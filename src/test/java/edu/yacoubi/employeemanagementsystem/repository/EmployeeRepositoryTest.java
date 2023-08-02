@@ -22,9 +22,12 @@ class EmployeeRepositoryTest {
                 .filter(employee -> employee.getGender().equals("Male"))
                 .count(),
                 employeeRepository.countByGender("Male"));
+    }
 
-
-        //Long cMale = employeeRepository.countByGender("Male");
-        //System.out.println("Male : " + cMale);
+    @Test
+    void countEmployeeOrderByGender() {
+        employeeRepository
+                .counterOrderByGender()
+                .forEach(genderCounter -> {System.out.println(genderCounter);});
     }
 }
