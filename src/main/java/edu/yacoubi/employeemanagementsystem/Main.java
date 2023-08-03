@@ -29,6 +29,16 @@ public class Main implements CommandLineRunner {
 		query = "2. Print the name of all departments in the organization?";
 		System.out.println(query);
 		testFindAllDepartementsByNames();
+
+		query = "3. What is the average age of male and female employees?";
+		System.out.println(query);
+		testAgeAverageByGenderCustom();
+
+	}
+
+	private void testAgeAverageByGenderCustom() {
+		repository.ageAverageByGenderCustom()
+				.forEach(System.out::println);
 	}
 
 	private void testFindAllDepartementsByNames() {
