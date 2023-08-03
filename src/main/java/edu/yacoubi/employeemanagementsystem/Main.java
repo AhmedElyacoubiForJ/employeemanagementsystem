@@ -22,17 +22,21 @@ public class Main implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		String query;
 
+		System.out.println("********* Query results *********");
 		query = "1. How many male and female employees are there in the organization?";
 		System.out.println(query);
 		testCountGroupByMaleFemale();
+		System.out.println();
 
 		query = "2. Print the name of all departments in the organization?";
 		System.out.println(query);
 		testFindAllDepartementsByNames();
+		System.out.println();
 
-		query = "3. What is the average age of male and female employees?";
+		query = "3.2 What is the average age of male and female employees?";
 		System.out.println(query);
 		testAgeAverageByGenderCustom();
+		System.out.println();
 
 	}
 
