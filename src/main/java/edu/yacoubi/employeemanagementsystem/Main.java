@@ -38,6 +38,14 @@ public class Main implements CommandLineRunner {
 		testAgeAverageByGenderCustom();
 		System.out.println();
 
+		query = "4. Get the details of highest paid employee in the organization?";
+		System.out.println(query);
+		testFindByHighestPaid();
+
+	}
+
+	private void testFindByHighestPaid() {
+		System.out.println(repository.findByHighestPaid());
 	}
 
 	private void testAgeAverageByGenderCustom() {

@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @NoArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +20,20 @@ public class Employee {
     private String 	department;
     private int	 	yearOfJoining;
     private double 	salary;
+
+    public Employee(
+            String name,
+            int age,
+            String gender,
+            String department,
+            int yearOfJoining,
+            double salary) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.department = department;
+        this.yearOfJoining = yearOfJoining;
+        this.salary = salary;
+    }
+
 }

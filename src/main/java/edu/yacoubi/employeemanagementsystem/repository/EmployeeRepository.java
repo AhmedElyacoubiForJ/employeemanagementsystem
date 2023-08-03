@@ -19,7 +19,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // 1.1 group by gender
     // SELECT count(*) , gender FROM employee group by gender
     // custom result as dto
-    @Query("SELECT new edu.yacoubi.employeemanagementsystem.dto.GenderCounter(count(*), e.gender) " +
+    @Query("SELECT new edu.yacoubi.employeemanagementsystem.dto." +
+            "GenderCounter(count(*), e.gender) " +
             "FROM Employee AS e " +
             "GROUP BY e.gender")
     List<GenderCounter> counterGroupByGender();
@@ -36,8 +37,14 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     // 3.2 What is the average age of male and female employees?
     // custom result as dto
-    @Query("SELECT new edu.yacoubi.employeemanagementsystem.dto.GenderAverage(e.gender, AVG(e.age)) " +
+    @Query("SELECT new edu.yacoubi.employeemanagementsystem.dto." +
+            "GenderAverage(e.gender, AVG(e.age)) " +
             "FROM Employee AS e " +
             "GROUP BY e.gender")
     List<GenderAverage> ageAverageByGenderCustom();
+
+    // 4. Get the details of highest paid employee in the organization?
+    @Query("SELECT e FROM Employee e "
+            + "WHERE e.salary IN (select MAX(salary) FROM Employee)")
+    Employee findByHighestPaid();
 }
