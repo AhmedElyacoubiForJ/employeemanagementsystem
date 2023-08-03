@@ -6,14 +6,14 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RunSampleDataCreation
+public class RunSampleDataInitializer
         implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
-    private SampleDataCreation sampleDataCreation;
+    private SampleDataInitializer sampleDataInitializer;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        sampleDataCreation.generateEmployeeData();
+        sampleDataInitializer.generateEmployeeData();
     }
 }

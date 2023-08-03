@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SampleDataCreation {
+public class SampleDataInitializer {
     @Autowired
     private EmployeeRepository repository;
 
