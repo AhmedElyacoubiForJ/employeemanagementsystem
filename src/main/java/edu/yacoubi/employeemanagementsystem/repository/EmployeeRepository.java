@@ -3,11 +3,11 @@ package edu.yacoubi.employeemanagementsystem.repository;
 import edu.yacoubi.employeemanagementsystem.dto.EmployeeDepartmentCount;
 import edu.yacoubi.employeemanagementsystem.dto.GenderAverage;
 import edu.yacoubi.employeemanagementsystem.dto.GenderCounter;
+import edu.yacoubi.employeemanagementsystem.dto.SalaryDepartmentAverage;
 import edu.yacoubi.employeemanagementsystem.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
@@ -53,8 +53,18 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     List<String> findByNamesJoinedAfter(@Param(value = "year") int year);
 
     // 6. Count the number of employees in each department
-    @Query("SELECT new " + dtoPackage +  ".EmployeeDepartmentCount(e.department, COUNT(e.department)) "
-            + "FROM Employee AS e "
-            + "GROUP BY e.department")
+    // custom result as dto
+    @Query("SELECT new " + dtoPackage +
+            ".EmployeeDepartmentCount(e.department, COUNT(e.department)) " +
+            "FROM Employee AS e " +
+            "GROUP BY e.department")
     List<EmployeeDepartmentCount> numberOfEmployeeEachDepartment();
+
+    // 7. What is the average salary of each department?
+    // custom result as dto
+    @Query("SELECT new " + dtoPackage +
+            ".SalaryDepartmentAverage(e.department, AVG(e.salary)) " +
+            "FROM Employee AS e " +
+            "GROUP BY e.department")
+    List<SalaryDepartmentAverage> averageSalaryOfEachDepartment();
 }
