@@ -81,4 +81,21 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             @Param(value = "gender") String gender,
             @Param(value = "department") String department
     );
+
+    // 9.	Who has the most working experience in the organization?
+
+    // 10. How many male and female employees are there in the sales and marketing team?
+
+    // 11. What is the average salary of male and female employees?
+
+    // 12. List down the names of all employees in each department?
+
+    // 13. What is the average salary and total salary of the whole organization?
+
+    // 14. Separate the employees who are younger or equal to 25 years
+    //     from those employees who are older than 25 years.
+
+    // 15. Who is the oldest employee in the organization?
+    //     What is his age and which department he belongs to?
+
 }
