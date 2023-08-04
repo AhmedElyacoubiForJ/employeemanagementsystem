@@ -60,11 +60,25 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "GROUP BY e.department")
     List<EmployeeDepartmentCount> numberOfEmployeeEachDepartment();
 
-    // 7. What is the average salary of each department?
+    // 7.1 What is the average salary of each department?
     // custom result as dto
     @Query("SELECT new " + dtoPackage +
             ".SalaryDepartmentAverage(e.department, AVG(e.salary)) " +
             "FROM Employee AS e " +
             "GROUP BY e.department")
     List<SalaryDepartmentAverage> averageSalaryOfEachDepartment();
+
+    // 8. Get the details of the youngest male employee in the product development department?
+    @Query("SELECT e FROM Employee e " +
+            "WHERE e.age = (" +
+                "SELECT MIN(ee.age) FROM Employee ee " +
+                "WHERE ee.gender = :gender " +
+                "and ee.department = :department" +
+            ") " +
+            "and e.gender = :gender and e.department = :department"
+    ) // TODO optimization
+    Employee youngestEmployee(
+            @Param(value = "gender") String gender,
+            @Param(value = "department") String department
+    );
 }

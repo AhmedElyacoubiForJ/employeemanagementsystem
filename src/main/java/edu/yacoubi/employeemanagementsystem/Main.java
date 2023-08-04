@@ -57,6 +57,20 @@ public class Main implements CommandLineRunner {
 		System.out.println(query);
 		testAverageSalaryOfEachDepartment();
 		System.out.println();
+
+		query = "8. Get the details of the youngest male employee in the product development department?";
+		System.out.println(query);
+		testYoungestEmployee();
+		System.out.println();
+	}
+
+	private void testYoungestEmployee() {
+		System.out.println(repository
+				.youngestEmployee("Male", "Product Development")
+		);
+		System.out.println(repository
+				.youngestEmployee("Female", "Product Development")
+		);
 	}
 
 	private void testAverageSalaryOfEachDepartment() {
