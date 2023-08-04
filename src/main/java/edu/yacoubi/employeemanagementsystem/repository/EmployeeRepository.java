@@ -1,5 +1,6 @@
 package edu.yacoubi.employeemanagementsystem.repository;
 
+import edu.yacoubi.employeemanagementsystem.dto.EmployeeDepartmentCount;
 import edu.yacoubi.employeemanagementsystem.dto.GenderAverage;
 import edu.yacoubi.employeemanagementsystem.dto.GenderCounter;
 import edu.yacoubi.employeemanagementsystem.entity.Employee;
@@ -50,4 +51,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT e.name FROM Employee e " +
             "WHERE e.yearOfJoining > :year")
     List<String> findByNamesJoinedAfter(@Param(value = "year") int year);
+
+    // 6. Count the number of employees in each department
+    @Query("SELECT new " + dtoPackage +  ".EmployeeDepartmentCount(e.department, COUNT(e.department)) "
+            + "FROM Employee AS e "
+            + "GROUP BY e.department")
+    List<EmployeeDepartmentCount> numberOfEmployeeEachDepartment();
 }

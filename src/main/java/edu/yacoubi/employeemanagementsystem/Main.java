@@ -48,6 +48,15 @@ public class Main implements CommandLineRunner {
 		testFindByNamesJoinedAfter2015();
 		System.out.println();
 
+		query = "6. Count the number of employees in each department";
+		System.out.println(query);
+		testNumberOfEmployeeEachDepartment();
+		System.out.println();
+	}
+
+	private void testNumberOfEmployeeEachDepartment() {
+		repository.numberOfEmployeeEachDepartment()
+				.forEach(System.out::println);
 	}
 
 	private void testFindByNamesJoinedAfter2015() {
@@ -64,14 +73,12 @@ public class Main implements CommandLineRunner {
 	}
 
 	private void testFindAllDepartementsByNames() {
-		repository
-				.findAllDepartementsByNames()
+		repository.findAllDepartementsByNames()
 				.forEach(System.out::println);
 	}
 
 	private void testCountGroupByMaleFemale() {
-		repository
-				.counterGroupByGender()
+		repository.counterGroupByGender()
 				.forEach(System.out::println);
 	}
 }
