@@ -41,7 +41,17 @@ public class Main implements CommandLineRunner {
 		query = "4. Get the details of highest paid employee in the organization?";
 		System.out.println(query);
 		testFindByHighestPaid();
+		System.out.println();
 
+		query = "5. Get the names of all employees who have joined after 2015?";
+		System.out.println(query);
+		testFindByNamesJoinedAfter2015();
+		System.out.println();
+
+	}
+
+	private void testFindByNamesJoinedAfter2015() {
+		System.out.println(repository.findByNamesJoinedAfter(2015));
 	}
 
 	private void testFindByHighestPaid() {

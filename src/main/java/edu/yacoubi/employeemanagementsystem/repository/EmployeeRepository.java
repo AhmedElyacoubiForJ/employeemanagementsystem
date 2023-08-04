@@ -21,8 +21,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // 1.1 group by gender
     // custom result as dto
     @Query("SELECT new " + dtoPackage + ".GenderCounter(count(*), e.gender) " +
-            "FROM Employee AS e " +
-            "GROUP BY e.gender")
+            "FROM Employee AS e " + "GROUP BY e.gender")
     List<GenderCounter> counterGroupByGender();
 
     // 2. Print the name of all departments in the organization?
@@ -46,4 +45,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT e FROM Employee e " +
             "WHERE e.salary IN (select MAX(salary) FROM Employee)")
     Employee findByHighestPaid();
+
+    // 5. Get the names of all employees who have joined after 2015?
+    @Query("SELECT e.name FROM Employee e " +
+            "WHERE e.yearOfJoining > :year")
+    List<String> findByNamesJoinedAfter(@Param(value = "year") int year);
 }
