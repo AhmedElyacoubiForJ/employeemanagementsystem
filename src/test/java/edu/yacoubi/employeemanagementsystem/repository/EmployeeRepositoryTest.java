@@ -15,56 +15,52 @@ import static org.junit.jupiter.api.Assertions.*;
 class EmployeeRepositoryTest {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeRepository repository;
 
-    private List<Employee> employeeList;
+    private List<Employee> employees;
 
     @BeforeEach
     void setUp() {
-        employeeList = employeeRepository.findAll();
+        employees = repository.findAll();
     }
 
     @Test
     void countByGender() {
-        assertEquals(employeeList.stream()
-                    .filter(employee -> employee.getGender().equals("Female"))
-                    .count(),
-            employeeRepository.countByGender("Female"));
+        assertEquals(employees.stream()
+                        .filter(e -> e.getGender().equals("Female"))
+                        .count(),
+                repository.countByGender("Female")
+        );
 
-        assertEquals(employeeList.stream()
-                .filter(employee -> employee.getGender().equals("Male"))
-                .count(),
-                employeeRepository.countByGender("Male"));
+        assertEquals(employees.stream()
+                        .filter(e -> e.getGender().equals("Male"))
+                        .count(),
+                repository.countByGender("Male"));
     }
 
+    // TODO delete all, create some data, test, delete all
     @Test
     void countEmployeeGroupByGender() {
         Map<String, Long> noOfMaleAndFemaleEmployees =
-                employeeList.stream()
+                employees.stream()
                         .collect(
                                 Collectors.groupingBy(
                                                 Employee::getGender,
                                                 Collectors.counting()
                                         )
                         );
-
+        //
         assertEquals(
                 noOfMaleAndFemaleEmployees.get("Female"),
-                employeeRepository
-                        .counterGroupByGender()
-                        .stream()
-                        .filter(gCounter ->
-                                gCounter.getGender().equals("Female"))
+                repository.counterGroupByGender().stream()
+                        .filter(gC -> gC.getGender().equals("Female"))
                         .findFirst().get().getCount()
         );
-
+        //
         assertEquals(
                 noOfMaleAndFemaleEmployees.get("Male"),
-                employeeRepository
-                        .counterGroupByGender()
-                        .stream()
-                        .filter(gCounter ->
-                                gCounter.getGender().equals("Male"))
+                repository.counterGroupByGender().stream()
+                        .filter(gC -> gC.getGender().equals("Male"))
                         .findFirst().get().getCount()
         );
     }
