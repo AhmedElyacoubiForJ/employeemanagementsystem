@@ -80,18 +80,22 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // 8. Get the details of the youngest male employee in the product development department?
     @Query("SELECT e FROM Employee e " +
             "WHERE e.age = (" +
-                "SELECT MIN(ee.age) FROM Employee ee " +
-                "WHERE ee.gender = :gender " +
-                "and ee.department = :department" +
+                "SELECT MIN(e.age) FROM Employee e " +
+                "WHERE e.gender = :gender " +
+                "AND e.department = :department" +
             ") " +
-            "and e.gender = :gender and e.department = :department"
+            "AND e.gender = :gender " +
+            "AND e.department = :department"
     ) // TODO optimization
-    Employee youngestEmployee(
+    List<Employee> youngestEmployee(
             @Param(value = "gender") String gender,
             @Param(value = "department") String department
     );
 
-    // 9.	Who has the most working experience in the organization?
+    // 9.  Who has the most working experience in the organization?
+    @Query("SELECT e FROM Employee e " +
+            "ORDER BY e.yearOfJoining ASC limit 1")
+    Employee mostWorkingExperience();
 
     // 10. How many male and female employees are there in the sales and marketing team?
 
