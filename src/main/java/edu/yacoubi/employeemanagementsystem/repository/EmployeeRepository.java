@@ -125,6 +125,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     );
 
     // 13. What is the average salary and total salary of the whole organization?
+    @Query("SELECT new " + dtoPackage +
+            ".SalaryTotalAndAverage(SUM(e.salary), AVG(e.salary)) " +
+            "FROM Employee e"
+    )
+    SalaryTotalAndAverage salaryAverageAndTotal();
 
     // 14. Separate the employees who are younger or equal to 25 years
     //     from those employees who are older than 25 years.

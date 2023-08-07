@@ -80,12 +80,21 @@ public class Main implements CommandLineRunner {
 
 		query = "12. List down the names of all employees in each department?";
 		System.out.println(query);
-		callNamesOfEachDepartment();
+		callNamesInDepartment();
 		System.out.println();
 
+		query = "13. What is the average salary and total salary " +
+				"of the whole organization?";
+		System.out.println(query);
+		callSalaryAverageAndTotal();
+		System.out.println();
 	}
 
-	private void callNamesOfEachDepartment() {
+	private void callSalaryAverageAndTotal() {
+		System.out.println(repository.salaryAverageAndTotal());
+	}
+
+	private void callNamesInDepartment() {
 		repository.findAllDepartementsByNames().forEach(depName -> {
 			System.out.println(depName + ":");
 			System.out.println("--------------");
@@ -94,8 +103,6 @@ public class Main implements CommandLineRunner {
 			});
 			System.out.println("");
 		});
-
-		//repository.namesInDepartment("").forEach(System.out::println);
 	}
 
 	private void callAverageSalaryOfGender() {
