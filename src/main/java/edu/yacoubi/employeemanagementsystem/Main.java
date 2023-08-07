@@ -20,6 +20,7 @@ public class Main implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		//
 		String query;
 
 		System.out.println("********* Query results *********");
