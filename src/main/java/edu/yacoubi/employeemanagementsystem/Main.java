@@ -20,7 +20,6 @@ public class Main implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//
 		String query;
 
 		System.out.println("********* Query results *********");
@@ -59,21 +58,33 @@ public class Main implements CommandLineRunner {
 		testAverageSalaryOfEachDepartment();
 		System.out.println();
 
-		query = "8. Get the details of the youngest male employee in the product development department?";
+		query = "8. Get the details of the youngest male employee " +
+				"in the product development department?";
 		System.out.println(query);
 		testYoungestEmployee();
 		System.out.println();
 
-		query = " 9.  Who has the most working experience in the organization?";
+		query = "9.  Who has the most working experience in the organization?";
 		System.out.println(query);
 		testMostWorkingExperience();
 		System.out.println();
 
-		query = " 10. How many male and female employees are there in the sales and marketing team?";
+		query = "10. How many male and female employees are there " +
+				"in the sales and marketing team?";
 		System.out.println(query);
 		testHowManyGenderInDepartment();
 		System.out.println();
 
+		query = "11. What is the average salary of male and female employees?";
+		System.out.println(query);
+		testAverageSalaryOfGender();
+		System.out.println();
+
+	}
+
+	private void testAverageSalaryOfGender() {
+		repository.averageSalaryOfGender()
+				.forEach(System.out::println);
 	}
 
 	private void testHowManyGenderInDepartment() {

@@ -1,9 +1,6 @@
 package edu.yacoubi.employeemanagementsystem.repository;
 
-import edu.yacoubi.employeemanagementsystem.dto.EmployeeDepartmentCount;
-import edu.yacoubi.employeemanagementsystem.dto.GenderAverage;
-import edu.yacoubi.employeemanagementsystem.dto.GenderCounter;
-import edu.yacoubi.employeemanagementsystem.dto.SalaryDepartmentAverage;
+import edu.yacoubi.employeemanagementsystem.dto.*;
 import edu.yacoubi.employeemanagementsystem.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -109,6 +106,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     );
 
     // 11. What is the average salary of male and female employees?
+    @Query("SELECT new " + dtoPackage +
+            ".GenderSalaryAverage(e.gender, AVG(e.salary)) " +
+            "FROM Employee e " +
+            "GROUP BY e.gender")
+    List<GenderSalaryAverage> averageSalaryOfGender();
 
     // 12. List down the names of all employees in each department?
 
