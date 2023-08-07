@@ -88,6 +88,29 @@ public class Main implements CommandLineRunner {
 		System.out.println(query);
 		callSalaryAverageAndTotal();
 		System.out.println();
+
+		query = "14.1 Separate the employees who are younger or equal to 25 years " +
+				"from those employees who are older than 25 years.";
+		System.out.println(query);
+		callYoungerThanEqual();
+		System.out.println();
+
+		query = "14.2 older than 25 years.";
+		System.out.println(query);
+		callOlderThan(); // olderThan
+		System.out.println();
+	}
+
+	private void callOlderThan() {
+		System.out.println("Employees older than 25 years :");
+		repository.olderThan(25)
+				.forEach(System.out::println);
+	}
+
+	private void callYoungerThanEqual() {
+		System.out.println("Employees younger than or equal to 25 years :");
+		repository.youngerThanEqual(25)
+				.forEach(System.out::println);
 	}
 
 	private void callSalaryAverageAndTotal() {

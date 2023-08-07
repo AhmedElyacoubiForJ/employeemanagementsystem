@@ -131,8 +131,17 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     )
     SalaryTotalAndAverage salaryAverageAndTotal();
 
-    // 14. Separate the employees who are younger or equal to 25 years
+    // 14.1 Separate the employees who are younger or equal to 25 years
     //     from those employees who are older than 25 years.
+    @Query("SELECT e.name FROM Employee e " +
+            "WHERE e.age <= :age")
+    List<String> youngerThanEqual(@Param(value = "age") int  age);
+
+    // 14.2 older than 25 years
+    @Query("SELECT e.name FROM Employee e " +
+            "WHERE e.age > :age")
+    List<String> olderThan(@Param(value = "age") int  age);
+
 
     // 15. Who is the oldest employee in the organization?
     //     What is his age and which department he belongs to?
