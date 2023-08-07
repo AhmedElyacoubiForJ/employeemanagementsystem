@@ -6,8 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.List;
-
 @SpringBootApplication
 public class Main implements CommandLineRunner {
 
@@ -25,78 +23,96 @@ public class Main implements CommandLineRunner {
 		System.out.println("********* Query results *********");
 		query = "1. How many male and female employees are there in the organization?";
 		System.out.println(query);
-		testCountGroupByMaleFemale();
+		callCountGroupByMaleFemale();
 		System.out.println();
 
 		query = "2. Print the name of all departments in the organization?";
 		System.out.println(query);
-		testFindAllDepartementsByNames();
+		callFindAllDepartementsByNames();
 		System.out.println();
 
 		query = "3.2 What is the average age of male and female employees?";
 		System.out.println(query);
-		testAgeAverageByGenderCustom();
+		callAgeAverageByGenderCustom();
 		System.out.println();
 
 		query = "4. Get the details of highest paid employee in the organization?";
 		System.out.println(query);
-		testFindByHighestPaid();
+		callFindByHighestPaid();
 		System.out.println();
 
 		query = "5. Get the names of all employees who have joined after 2015?";
 		System.out.println(query);
-		testFindByNamesJoinedAfter2015();
+		callFindByNamesJoinedAfter2015();
 		System.out.println();
 
 		query = "6. Count the number of employees in each department?";
 		System.out.println(query);
-		testNumberOfEmployeeEachDepartment();
+		callNumberOfEmployeeEachDepartment();
 		System.out.println();
 
 		query = "7. What is the average salary of each department?";
 		System.out.println(query);
-		testAverageSalaryOfEachDepartment();
+		callAverageSalaryOfEachDepartment();
 		System.out.println();
 
 		query = "8. Get the details of the youngest male employee " +
 				"in the product development department?";
 		System.out.println(query);
-		testYoungestEmployee();
+		callYoungestEmployee();
 		System.out.println();
 
 		query = "9.  Who has the most working experience in the organization?";
 		System.out.println(query);
-		testMostWorkingExperience();
+		callMostWorkingExperience();
 		System.out.println();
 
 		query = "10. How many male and female employees are there " +
 				"in the sales and marketing team?";
 		System.out.println(query);
-		testHowManyGenderInDepartment();
+		callHowManyGenderInDepartment();
 		System.out.println();
 
 		query = "11. What is the average salary of male and female employees?";
 		System.out.println(query);
-		testAverageSalaryOfGender();
+		callAverageSalaryOfGender();
+		System.out.println();
+
+		query = "12. List down the names of all employees in each department?";
+		System.out.println(query);
+		callNamesOfEachDepartment();
 		System.out.println();
 
 	}
 
-	private void testAverageSalaryOfGender() {
+	private void callNamesOfEachDepartment() {
+		repository.findAllDepartementsByNames().forEach(depName -> {
+			System.out.println(depName + ":");
+			System.out.println("--------------");
+			repository.namesInDepartment(depName).forEach(name -> {
+				System.out.println(name);
+			});
+			System.out.println("");
+		});
+
+		//repository.namesInDepartment("").forEach(System.out::println);
+	}
+
+	private void callAverageSalaryOfGender() {
 		repository.averageSalaryOfGender()
 				.forEach(System.out::println);
 	}
 
-	private void testHowManyGenderInDepartment() {
+	private void callHowManyGenderInDepartment() {
 		repository.howManyGenderInDepartment("Sales And Marketing")
 				.forEach(System.out::println);
 	}
 
-	private void testMostWorkingExperience() {
+	private void callMostWorkingExperience() {
 		System.out.println(repository.mostWorkingExperience());
 	}
 
-	private void testYoungestEmployee() {
+	private void callYoungestEmployee() {
 		System.out.println(repository
 				.youngestEmployee("Male", "Product Development")
 		);
@@ -105,36 +121,36 @@ public class Main implements CommandLineRunner {
 		);
 	}
 
-	private void testAverageSalaryOfEachDepartment() {
+	private void callAverageSalaryOfEachDepartment() {
 		repository.averageSalaryOfEachDepartment()
 				.forEach(System.out::println);
 	}
 
-	private void testNumberOfEmployeeEachDepartment() {
+	private void callNumberOfEmployeeEachDepartment() {
 		repository.numberOfEmployeeEachDepartment()
 				.forEach(System.out::println);
 	}
 
-	private void testFindByNamesJoinedAfter2015() {
+	private void callFindByNamesJoinedAfter2015() {
 		repository.findByNamesJoinedAfter(2015)
 				.forEach(System.out::println);
 	}
 
-	private void testFindByHighestPaid() {
+	private void callFindByHighestPaid() {
 		System.out.println(repository.findByHighestPaid());
 	}
 
-	private void testAgeAverageByGenderCustom() {
+	private void callAgeAverageByGenderCustom() {
 		repository.ageAverageByGenderCustom()
 				.forEach(System.out::println);
 	}
 
-	private void testFindAllDepartementsByNames() {
+	private void callFindAllDepartementsByNames() {
 		repository.findAllDepartementsByNames()
 				.forEach(System.out::println);
 	}
 
-	private void testCountGroupByMaleFemale() {
+	private void callCountGroupByMaleFemale() {
 		repository.counterGroupByGender()
 				.forEach(System.out::println);
 	}

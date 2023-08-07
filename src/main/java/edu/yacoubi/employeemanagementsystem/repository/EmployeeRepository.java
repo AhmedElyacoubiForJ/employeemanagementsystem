@@ -92,7 +92,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     // 9.  Who has the most working experience in the organization?
     @Query("SELECT e FROM Employee e " +
-            "ORDER BY e.yearOfJoining ASC limit 1")
+            "ORDER BY e.yearOfJoining ASC limit 1"
+    )
     Employee mostWorkingExperience();
 
     // 10. How many male and female employees are there
@@ -100,7 +101,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT new " + dtoPackage + ".GenderCounter(e.gender, count(*)) " +
             "FROM Employee e " +
             "WHERE e.department = :department " +
-            "GROUP BY e.gender")
+            "GROUP BY e.gender"
+    )
     List<GenderCounter> howManyGenderInDepartment(
             @Param(value = "department") String department
     );
@@ -109,10 +111,18 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT new " + dtoPackage +
             ".GenderSalaryAverage(e.gender, AVG(e.salary)) " +
             "FROM Employee e " +
-            "GROUP BY e.gender")
+            "GROUP BY e.gender"
+    )
     List<GenderSalaryAverage> averageSalaryOfGender();
 
     // 12. List down the names of all employees in each department?
+    @Query("SELECT e.name FROM Employee e " +
+            "WHERE e.department = :department " +
+            "ORDER BY e.name"
+    )
+    List<String> namesInDepartment(
+            @Param(value = "department") String department
+    );
 
     // 13. What is the average salary and total salary of the whole organization?
 
