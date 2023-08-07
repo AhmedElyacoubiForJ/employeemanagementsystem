@@ -67,6 +67,17 @@ public class Main implements CommandLineRunner {
 		System.out.println(query);
 		testMostWorkingExperience();
 		System.out.println();
+
+		query = " 10. How many male and female employees are there in the sales and marketing team?";
+		System.out.println(query);
+		testHowManyGenderInDepartment();
+		System.out.println();
+
+	}
+
+	private void testHowManyGenderInDepartment() {
+		repository.howManyGenderInDepartment("Sales And Marketing")
+				.forEach(System.out::println);
 	}
 
 	private void testMostWorkingExperience() {

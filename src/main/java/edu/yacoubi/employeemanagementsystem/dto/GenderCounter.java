@@ -6,6 +6,6 @@ import lombok.ToString;
 
 @Getter @AllArgsConstructor @ToString
 public class GenderCounter {
-    private Long count;
     private String gender;
+    private Long count;
 }

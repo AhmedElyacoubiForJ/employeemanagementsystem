@@ -22,7 +22,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     // 1.1 group by gender
     // custom result as dto
-    @Query("SELECT new " + dtoPackage + ".GenderCounter(count(*), e.gender) " +
+    @Query("SELECT new " + dtoPackage + ".GenderCounter(e.gender, count(*)) " +
             "FROM Employee AS e " +
             "GROUP BY e.gender"
     )
@@ -77,7 +77,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     )
     List<SalaryDepartmentAverage> averageSalaryOfEachDepartment();
 
-    // 8. Get the details of the youngest male employee in the product development department?
+    // 8. Get the details of the youngest male employee
+    //    in the product development department?
     @Query("SELECT e FROM Employee e " +
             "WHERE e.age = (" +
                 "SELECT MIN(e.age) FROM Employee e " +
@@ -97,7 +98,15 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "ORDER BY e.yearOfJoining ASC limit 1")
     Employee mostWorkingExperience();
 
-    // 10. How many male and female employees are there in the sales and marketing team?
+    // 10. How many male and female employees are there
+    //     in the sales and marketing team?
+    @Query("SELECT new " + dtoPackage + ".GenderCounter(e.gender, count(*)) " +
+            "FROM Employee e " +
+            "WHERE e.department = :department " +
+            "GROUP BY e.gender")
+    List<GenderCounter> howManyGenderInDepartment(
+            @Param(value = "department") String department
+    );
 
     // 11. What is the average salary of male and female employees?
 
