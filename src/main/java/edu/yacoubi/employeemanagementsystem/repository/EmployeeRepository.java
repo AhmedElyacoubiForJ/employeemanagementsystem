@@ -142,7 +142,12 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "WHERE e.age > :age")
     List<String> olderThan(@Param(value = "age") int  age);
 
-
     // 15. Who is the oldest employee in the organization?
     //     What is his age and which department he belongs to?
+    @Query("SELECT new " + dtoPackage +
+            ".OldestEmployee(e.name, e.age, e.department) " +
+                "FROM Employee e " +
+                "WHERE e.age IN (SELECT MAX(age) FROM Employee )"
+    )
+    OldestEmployee oldest();
 }

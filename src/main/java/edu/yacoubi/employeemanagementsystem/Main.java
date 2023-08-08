@@ -99,6 +99,13 @@ public class Main implements CommandLineRunner {
 		System.out.println(query);
 		callOlderThan(); // olderThan
 		System.out.println();
+
+
+		query = "15 Who is the oldest employee in the organization?" +
+				"What is his age and which department he belongs to?";
+		System.out.println(query);
+		System.out.println();
+		System.out.println(repository.oldest());
 	}
 
 	private void callOlderThan() {
