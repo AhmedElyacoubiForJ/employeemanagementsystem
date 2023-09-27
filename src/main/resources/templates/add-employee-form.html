@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Employee</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <h2>Add Employee</h2>
+        <hr/>
+        <form th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+            <input type="text" th:field="*{name}"
+                   placeholder="Enter name"
+                   class="form-control col-4 mb-4"/>
+
+            <!-- input type="text" th:field="*{age}"
+                   placeholder="Enter age"
+                   class="form-control col-4 mb-4"/ -->
+
+            <input type="text" th:field="*{gender}"
+                   placeholder="Enter gender"
+                   class="form-control col-4 mb-4"/>
+
+            <input type="text" th:field="*{department}"
+                   placeholder="Enter department"
+                   class="form-control col-4 mb-4"/>
+
+            <!-- input type="text" th:field="*{yearOfJoining}"
+                   placeholder="Enter year of joining"
+                   class="form-control col-4 mb-4"/ -->
+
+            <!-- input type="text" th:field="*{salary}"
+                   placeholder="Enter salary"
+                   class="form-control col-4 mb-4"/ -->
+
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>
