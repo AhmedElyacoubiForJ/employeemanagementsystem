@@ -10,7 +10,10 @@
     <div class="card">
         <div class="card-header">List Employees</div>
             <div class="card-body">
-                <a th:href="@{/addEmployeeForm}" class="btn btn-primary m-2">Add Employee</a>
+                <a th:href="@{/addEmployeeForm}"
+                   class="btn btn-primary m-2">
+                    Add Employee
+                </a>
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -20,6 +23,7 @@
                         <th>Department</th>
                         <th>Year of joining</th>
                         <th>Salary</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
 
@@ -31,6 +35,12 @@
                         <td th:text="${employee.department}"></td>
                         <td th:text="${employee.yearOfJoining}"></td>
                         <td th:text="${employee.salary}"></td>
+                        <td>
+                            <a th:href="@{/showUpdateForm(employeeId=${employee.id})}"
+                               class="btn btn-info">
+                                Update
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

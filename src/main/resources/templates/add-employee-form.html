@@ -36,7 +36,10 @@
                    class="form-control col-4 mb-4"/ -->
 
             <button class="btn btn-primary" type="submit">Save</button>
+            <input type="hidden" th:field="*{id}" />
         </form>
+        <hr/>
+        <a th:href="@{/showEmployees}">Back to Employee list</a>
     </div>
 </body>
 </html>

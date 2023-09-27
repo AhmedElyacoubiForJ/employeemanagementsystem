@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -37,5 +39,12 @@ public class EmployeeController {
     public String saveEmployee(@ModelAttribute Employee employee) {
         repository.save(employee);
         return "redirect:/showEmployees";
+    }
+    @GetMapping("/showUpdateForm")
+    public ModelAndView showUpdateForm(@RequestParam int employeeId) {
+        ModelAndView modelAndView = new ModelAndView("add-employee-form");
+        Optional<Employee> optionalEmployee = repository.findById(employeeId);
+        modelAndView.addObject("employee", optionalEmployee.get());
+        return modelAndView;
     }
 }
