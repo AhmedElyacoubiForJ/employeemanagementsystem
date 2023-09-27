@@ -47,4 +47,10 @@ public class EmployeeController {
         modelAndView.addObject("employee", optionalEmployee.get());
         return modelAndView;
     }
+
+    @GetMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam int employeeId) {
+        repository.deleteById(employeeId);
+        return "redirect:/showEmployees";
+    }
 }
