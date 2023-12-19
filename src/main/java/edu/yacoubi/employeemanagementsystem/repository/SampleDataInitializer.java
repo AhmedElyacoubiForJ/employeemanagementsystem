@@ -12,7 +12,7 @@ public class SampleDataInitializer {
     @Autowired
     private EmployeeRepository repository;
 
-    public void generateEmployeeData() {
+    public void saveAll() {
         List<Employee> employeeList = new ArrayList<Employee>();
 
         employeeList.add(new Employee("Jiya Brein", 32, "Female", "HR", 2011, 25000.0));

@@ -28,5 +28,7 @@
     What is his age and which department he belongs to?
 
 # Getting Started with Thymeleaf
-## * [Thymeleaf Documentation](https://docs.spring.io/spring-boot/docs/3.0.11/reference/htmlsingle/index.html#web.servlet.spring-mvc.template-engines)
-## * [Thymeleaf tutorial]( https://www.youtube.com/watch?v=nP7O26fFkjI&t=2507s )
+## [Thymeleaf Documentation](https://docs.spring.io/spring-boot/docs/3.0.11/reference/htmlsingle/index.html#web.servlet.spring-mvc.template-engines)
+## [Thymeleaf tutorial]( https://www.youtube.com/watch?v=nP7O26fFkjI&t=2507s)
+
+## 1:12:33 stand

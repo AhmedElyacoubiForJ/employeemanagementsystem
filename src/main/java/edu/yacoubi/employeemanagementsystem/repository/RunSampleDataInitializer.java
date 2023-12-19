@@ -14,6 +14,6 @@ public class RunSampleDataInitializer
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        sampleDataInitializer.generateEmployeeData();
+        sampleDataInitializer.saveAll();
     }
 }
