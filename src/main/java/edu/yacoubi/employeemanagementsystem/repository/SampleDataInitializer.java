@@ -12,7 +12,7 @@ public class SampleDataInitializer {
     @Autowired
     private EmployeeRepository repository;
 
-    public void saveAll() {
+    public static List<Employee> generateEmployees() {
         List<Employee> employeeList = new ArrayList<Employee>();
 
         employeeList.add(new Employee("Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
@@ -33,6 +33,10 @@ public class SampleDataInitializer {
         employeeList.add(new Employee("Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee("Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-        repository.saveAll(employeeList);
+        return employeeList;
+    }
+
+    public void saveAll() {
+        repository.saveAll(generateEmployees());
     }
 }
